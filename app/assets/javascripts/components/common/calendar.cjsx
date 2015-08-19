@@ -66,26 +66,46 @@ Calendar = React.createClass(
         weekday = @props.course.weekdays.charAt(moment(day).format('e')) == '1'
         inrange && exception && weekday
     }
-    editing_days = (
-      <p>Select the days of the week on which your class meets.</p>
+    help_text = (
+      <p><strong>2. Click dates to add them to or remove them from the schedule.</strong></p>
     ) if @props.editable
     editing_calendar = (
-      <p>Select dates to add or remove them from the schedule.</p>
+      <div className='editing-calendar'>
+        <h3>Key</h3>
+        <ul className='editing-calendar__key-ul'>
+          <li>
+            <strong>Day out of range of class dates</strong>
+            <div className='DayPicker-Day DayPicker-Day--outrange'>6</div>
+          </li>
+          <li>
+            <strong>No Class Scheduled</strong>
+            <div className='DayPicker-Day DayPicker-Day--highlighted'>6</div>
+          </li>
+          <li>
+            <strong>Class Day</strong>
+            <div className='DayPicker-Day DayPicker-Day--highlighted DayPicker-Day--selected'>6</div>
+          </li>
+          <li>
+            <strong>Class Holiday</strong>
+            <div className='DayPicker-Day DayPicker-Day--highlighted DayPicker-Day--bordered'>6</div>
+          </li>
+        </ul>
+      </div>
     ) if @props.editable
 
     <div>
-      {editing_days}
       <WeekdayPicker
         modifiers={modifiers}
         onWeekdayClick={if @props.editable then @selectWeekday else null}
       />
-      {editing_calendar}
+      {help_text}
       <DayPicker
         modifiers={modifiers}
         onDayClick={if @props.editable then @selectDay else null}
         onWeekdayClick={if @props.editable then @selectWeekday else null}
         initialMonth={moment.max(moment(@props.course.start), moment()).toDate()}
       />
+      {editing_calendar}
     </div>
 )
 

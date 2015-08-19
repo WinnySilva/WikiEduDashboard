@@ -7,13 +7,21 @@ _active_index = 0
 _summary = false
 _wizard_key = null
 _panels = [{
-  title:  I18n.t('wizard.assignment_dates')
+  title:  I18n.t('wizard.course_dates')
   description: I18n.t('wizard.confirm_dates')
   active: true
   options: []
   type: -1
   minimum: 0
   key: 'dates'
+},{
+  title: 'Select Class Days'
+  description: '**1. Select the days on which your class meets**'
+  active: false
+  options: []
+  type: -1
+  minimum: 0
+  key: 'meetings'
 },{
   title: I18n.t('wizard.assignment_type')
   description: I18n.t('wizard.select_assignment')
@@ -34,7 +42,7 @@ _panels = [{
 
 # Utilities
 setIndex = (index) ->
-  _panels[1].options = index
+  _panels[2].options = index
   WizardStore.emitChange()
 
 setPanels = (panels) ->
@@ -72,7 +80,7 @@ moveWizard = (backwards=false, to_index=null) ->
     increment = 1
     if _active_index == 1
       selected_wizard = _.find(_panels[_active_index].options, (o) -> o.selected)
-      if selected_wizard.key != _wizard_key
+      if selected_wizard && selected_wizard.key != _wizard_key
         _wizard_key = selected_wizard.key
         ServerActions.fetchWizardPanels(selected_wizard.key)
         increment = 0

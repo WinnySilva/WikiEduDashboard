@@ -153,34 +153,6 @@ CourseCreator = React.createClass(
               label='Course description'
               autoExpand=false
             />
-            <TextInput
-              id='course_start'
-              onChange={@updateCourse}
-              value={@state.course.start}
-              value_key='start'
-              required=true
-              editable=true
-              type='date'
-              label='Start date'
-              placeholder='Start date (YYYY-MM-DD)'
-              blank=true
-              isClearable=false
-            />
-            <TextInput
-              id='course_end'
-              onChange={@updateCourse}
-              value={@state.course.end}
-              value_key='end'
-              required=true
-              editable=true
-              type='date'
-              label='End date'
-              placeholder='End date (YYYY-MM-DD)'
-              blank=true
-              date_props={minDate: moment(@state.course.start).add(1, 'week')}
-              enabled={@state.course.start?}
-              isClearable=false
-            />
           </div>
         </div>
         <div className='wizard__panel__controls'>

@@ -5,7 +5,7 @@ json.course do
         :weekdays)
 
   json.legacy @course.id < 10000
-  json.ended !current?(@course) && @course.start < Time.now
+  json.ended false #!current?(@course) && @course.start < Time.now
   json.published CohortsCourses.exists?(course_id: @course.id)
   json.enroll_url "#{request.base_url}#{course_slug_path(@course.slug)}/enroll/"
 
