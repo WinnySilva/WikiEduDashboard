@@ -1,6 +1,7 @@
 React           = require 'react'
 ServerActions   = require '../../actions/server_actions'
 CourseStore     = require '../../stores/course_store'
+AssignCell      = require '../students/assign_cell'
 
 getState = (course_id) ->
   course: CourseStore.getCourse()
@@ -31,13 +32,24 @@ Actions = React.createClass(
   render: ->
     controls = []
     user = @props.current_user
+    assignments = []
     if user.role? || user.admin
       # controls.push (
       #   <p key='update'><button onClick={@update} className='button'>Update course</button></p>
       # )
       if user.role == 0
         controls.push (
-          <p key='leave'><button onClick={@leave} className='button'>Leave course</button></p>
+          <div className='sidebar__course-actions'>
+            <p key='leave'><button onClick={@leave} className='button'>Leave course</button></p>
+              <AssignCell
+                assignments={assignments}
+                current_user={user}
+                student={user}
+                role=0
+                course_id={@props.course.slug}
+                editable={false}
+                save={@save} />
+          </div>
         )
       if (user.role == 1 || user.admin) && !@state.course.published
         controls.push (
