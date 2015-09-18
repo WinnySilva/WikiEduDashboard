@@ -1,14 +1,16 @@
 React           = require 'react'
 ServerActions   = require '../../actions/server_actions'
 CourseStore     = require '../../stores/course_store'
-AssignCell      = require '../students/assign_cell'
+AssignCell      = require './assign_cell'
+UserAssignmentStore = require '../../stores/user_assignment_store'
 
 getState = (course_id) ->
   course: CourseStore.getCourse()
+  assignments: UserAssignmentStore.getUserAssignments()
 
 Actions = React.createClass(
   displayName: 'Actions'
-  mixins: [CourseStore.mixin]
+  mixins: [CourseStore.mixin, UserAssignmentStore.mixin]
   storeDidChange: ->
     @setState getState()
   getInitialState: ->
@@ -29,6 +31,7 @@ Actions = React.createClass(
       alert('"' + entered_title + '" is not the title of this course. The course has not been deleted.')
   update: ->
     ServerActions.manualUpdate @state.course.slug
+
   render: ->
     controls = []
     user = @props.current_user
@@ -42,13 +45,10 @@ Actions = React.createClass(
           <div className='sidebar__course-actions'>
             <p key='leave'><button onClick={@leave} className='button'>Leave course</button></p>
               <AssignCell
-                assignments={assignments}
-                current_user={user}
-                student={user}
+                assignments={@state.assignments}
+                user={user}
                 role=0
-                course_id={@props.course.slug}
-                editable={false}
-                save={@save} />
+                course_id={@props.course.slug} />
           </div>
         )
       if (user.role == 1 || user.admin) && !@state.course.published
