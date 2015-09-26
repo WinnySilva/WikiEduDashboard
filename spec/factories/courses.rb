@@ -34,7 +34,7 @@
 #
 
 FactoryGirl.define do
-  factory :course do
+  factory :course, class: 'ClassroomProgram' do
     start Date.new(2015, 01, 01)
     # end is a reserved keyword, set that in the let(:course) calls
     title 'Underwater basket-weaving'

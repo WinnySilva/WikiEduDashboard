@@ -52,9 +52,6 @@ class Course < ActiveRecord::Base
   #########################
   # Activity by the users #
   #########################
-  has_many :revisions, -> (course) {
-    where('date >= ?', course.start).where('date <= ?', course.end)
-  }, through: :students
   has_many :uploads, through: :students
 
   has_many :articles_courses, class_name: ArticlesCourses, dependent: :destroy
@@ -202,7 +199,7 @@ class Course < ActiveRecord::Base
     self.view_sum = articles_courses.live.sum(:view_count)
     self.user_count = students_without_nonstudents.size
     self.trained_count = students_without_nonstudents.trained.size
-    self.revision_count = revisions.size
+    self.revision_count = self.revisions.size
     self.article_count = articles.namespace(0).live.size
     self.new_article_count = new_articles.count
     save
@@ -251,4 +248,10 @@ class Course < ActiveRecord::Base
       week.update_attribute(:order, i + 1)
     end
   end
+end
+
+class ClassroomProgram < Course
+  has_many :revisions, -> (course) {
+    where('date >= ?', course.start).where('date <= ?', course.end)
+  }, through: :students
 end
