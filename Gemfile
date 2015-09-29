@@ -7,7 +7,7 @@ gem 'mediawiki_api', '0.4.1'
 gem 'crack'
 gem 'figaro'
 gem 'whenever'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 
 gem 'browser'
 
@@ -16,7 +16,7 @@ gem 'omniauth-mediawiki'
 
 gem 'deep_cloneable', '~> 2.1.1'
 
-gem 'sentry-raven'
+gem 'sentry-raven', '~>0.13.3'
 gem 'piwik_analytics', :git => 'https://github.com/halfdan/piwik-ruby-tracking.git'
 
 # This fork has a fix for enums not working
