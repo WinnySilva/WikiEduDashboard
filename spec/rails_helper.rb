@@ -8,12 +8,19 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara-webkit'
 
 Capybara.configure do |config|
   config.javascript_driver = :webkit
 end
 
 Capybara.default_wait_time = 15
+
+Capybara::Webkit.configure do |config|
+  config.allow_url 'fonts.googleapis.com'
+  config.allow_url 'maxcdn.bootstrapcdn.com'
+  config.allow_url 'cdn.ravenjs.com'
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
