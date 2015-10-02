@@ -20,6 +20,8 @@ gem 'sentry-raven'
 gem 'skylight'
 gem 'piwik_analytics', :git => 'https://github.com/halfdan/piwik-ruby-tracking.git'
 
+gem 'redcarpet'
+
 # This fork has a fix for enums not working
 # https://github.com/zdennis/activerecord-import/issues/139
 gem 'activerecord-import', :git => 'https://github.com/onemedical/activerecord-import.git'
