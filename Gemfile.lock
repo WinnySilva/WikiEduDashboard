@@ -177,6 +177,7 @@ GEM
       guard (~> 2.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (3.4.2)
+    hashugar (1.0.0)
     hike (1.2.3)
     hitimes (1.2.2)
     http-cookie (1.0.2)
@@ -383,6 +384,7 @@ DEPENDENCIES
   guard-livereload
   guard-rails
   guard-rspec
+  hashugar
   i18n-js (>= 3.0.0.rc8)
   jbuilder (~> 2.0)
   launchy
