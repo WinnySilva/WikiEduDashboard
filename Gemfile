@@ -22,6 +22,7 @@ gem 'piwik_analytics', :git => 'https://github.com/halfdan/piwik-ruby-tracking.g
 
 gem 'redcarpet'
 gem 'hashugar'
+gem 'breadcrumbs_on_rails'
 
 # This fork has a fix for enums not working
 # https://github.com/zdennis/activerecord-import/issues/139
