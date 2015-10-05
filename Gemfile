@@ -21,6 +21,7 @@ gem 'skylight'
 gem 'piwik_analytics', :git => 'https://github.com/halfdan/piwik-ruby-tracking.git'
 
 gem 'redcarpet'
+gem 'hashugar'
 
 # This fork has a fix for enums not working
 # https://github.com/zdennis/activerecord-import/issues/139
